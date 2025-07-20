@@ -1,6 +1,6 @@
 
 import streamlit as st
-from llm_api import generate_content
+from llm_api import generate_reply
 import re
 
 # --- Session State for service status ---
@@ -57,7 +57,7 @@ if st.button("Generate Content"):
                     prompt = f"Write a {tone.lower()} {content_type.lower()} about: {topic}."
                     if keywords:
                         prompt += f" Include these keywords: {keywords}."
-                    content = generate_content(prompt, max_tokens)
+                    content = generate_reply(prompt, max_tokens)
                     st.success("Content generated!")
                 except Exception as e:
                     msg = str(e)

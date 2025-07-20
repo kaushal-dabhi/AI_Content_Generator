@@ -1,12 +1,14 @@
 
 import requests
-import os
+import streamlit as st
 
-# You can set your API key via Streamlit secrets or directly for local testing
-GROQ_API_KEY = os.getenv("GROQ_API_KEY", "your_default_or_test_key_here")
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 
 def generate_reply(persona, message):
-    prompt = f"You are a {persona}. Answer the user's question accordingly.\nUser: {message}\nAssistant:"
+    if not message:
+        return "Please enter a message."
+
+    url = "https://api.groq.com/openai/v1/chat/completions"
 
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY}",
@@ -14,32 +16,18 @@ def generate_reply(persona, message):
     }
 
     data = {
-        "model": "mixtral-8x7b-32768",
+        "model": "llama3-70b-8192",  # ✅ Groq-supported model
         "messages": [
             {"role": "system", "content": f"You are a {persona} personality chatbot."},
             {"role": "user", "content": message}
         ]
     }
 
-    response = requests.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=data)
-    response.raise_for_status()
-    return response.json()["choices"][0]["message"]["content"]
+    # DEBUG: Print payload info
+    print("=== DEBUG GROQ ===")
+    print("Headers:", headers)
+    print("Payload:", data)
 
-def generate_content(prompt, max_tokens=150):
-    headers = {
-        "Authorization": f"Bearer {GROQ_API_KEY}",
-        "Content-Type": "application/json"
-    }
-
-    data = {
-        "model": "mixtral-8x7b-32768",
-        "messages": [
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": prompt}
-        ],
-        "max_tokens": max_tokens
-    }
-
-    response = requests.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=data)
+    response = requests.post(url, headers=headers, json=data)
     response.raise_for_status()
     return response.json()["choices"][0]["message"]["content"]
