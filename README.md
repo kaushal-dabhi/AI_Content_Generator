@@ -3,6 +3,7 @@
 
 This is a Streamlit-based web app that generates various types of creative content using the LLaMA 3 model via the Groq API.
 
+LIVE DEMO : https://kaushal-dabhi-ai-content-generator-app-sqjoja.streamlit.app/
 ---
 
 ## 🚀 Features
