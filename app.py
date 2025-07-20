@@ -77,58 +77,28 @@ if st.button("Generate Content"):
             st.download_button("📥 Download as .txt", content, file_name="generated_content.txt")
 
 st.caption("Powered by LLaMA-3 via Groq API. See quota usage: https://console.groq.com/usage")
-
-
-st.markdown("""
-<style>
-body {
-    background-color: #0f1117;
-    color: #f0f0f0;
-}
-div[data-testid="stAppViewContainer"] > section {
-    padding: 2rem 1rem;
-}
-h1, h2, h3 {
-    color: #1abc9c;
-}
-.stTextInput, .stSelectbox, .stSlider, .stTextArea {
-    background-color: #1e1e1e !important;
-    border-radius: 10px;
-}
-button[kind="primary"] {
-    background-color: #1abc9c !important;
-    color: black !important;
-
-# Add personalized logo or header banner
-st.markdown(
-    "<div style='text-align:center; margin-bottom: 1.5rem;'>"
-    "<img src='https://kaushaldabhi.com/assets/logo.png' alt='Kaushal Dabhi Logo' style='height:80px;'>"
-    "<h1 style='margin-top: 0.5rem; color: #1abc9c;'>AI Code Generator</h1>"
-    "</div>",
-    unsafe_allow_html=True
-)
-
-    font-weight: bold;
-}
-</style>
-""", unsafe_allow_html=True)
-
-
 st.markdown(
     """
     <hr style='margin-top:3rem; margin-bottom:1rem;'>
     <div style='text-align:center; font-size:0.9rem; color:#888;'>
         Built by <strong>Kaushal Dabhi</strong> • 
-        <a href='https://github.com/kaushal-dabhi/AI_Content_Generator' target='_blank' style='color:#1abc9c;'>GitHub Repo</a>
+        <a href='https://github.com/kaushal-dabhi/Chatbot_Personality_Toggle' target='_blank' style='color:#1abc9c;'>GitHub Repo</a>
     </div>
     """,
     unsafe_allow_html=True
 )
 
+
+
+
+# --- Back link to main website ---
 st.markdown(
-    "<div style='text-align: center; margin-top: 2rem;'>"
-    "<a href='https://kaushaldabhi.com' target='_blank' style='padding: 0.7rem 1.5rem; "
-    "background-color: #1abc9c; color: black; font-weight: bold; border-radius: 8px; text-decoration: none;'>"
-    "← Back to kaushaldabhi.com</a></div>",
+    '''
+    <div style='margin-top: 3rem; text-align: center;'>
+        <a href="https://kaushaldabhi.com" target="_blank" style="font-size: 16px; color: #1abc9c;">
+            ← Back to kaushaldabhi.com
+        </a>
+    </div>
+    ''',
     unsafe_allow_html=True
 )
