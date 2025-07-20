@@ -1,6 +1,6 @@
 
 import streamlit as st
-from llm_api import generate_reply
+from llm_api import generate_content
 import re
 
 # --- Session State for service status ---
@@ -57,7 +57,7 @@ if st.button("Generate Content"):
                     prompt = f"Write a {tone.lower()} {content_type.lower()} about: {topic}."
                     if keywords:
                         prompt += f" Include these keywords: {keywords}."
-                    content = generate_reply(prompt, max_tokens)
+                    content = generate_content(prompt, max_tokens)
                     st.success("Content generated!")
                 except Exception as e:
                     msg = str(e)
@@ -77,28 +77,3 @@ if st.button("Generate Content"):
             st.download_button("📥 Download as .txt", content, file_name="generated_content.txt")
 
 st.caption("Powered by LLaMA-3 via Groq API. See quota usage: https://console.groq.com/usage")
-st.markdown(
-    """
-    <hr style='margin-top:3rem; margin-bottom:1rem;'>
-    <div style='text-align:center; font-size:0.9rem; color:#888;'>
-        Built by <strong>Kaushal Dabhi</strong> • 
-        <a href='https://github.com/kaushal-dabhi/Chatbot_Personality_Toggle' target='_blank' style='color:#1abc9c;'>GitHub Repo</a>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-
-
-
-# --- Back link to main website ---
-st.markdown(
-    '''
-    <div style='margin-top: 3rem; text-align: center;'>
-        <a href="https://kaushaldabhi.com" target="_blank" style="font-size: 16px; color: #1abc9c;">
-            ← Back to kaushaldabhi.com
-        </a>
-    </div>
-    ''',
-    unsafe_allow_html=True
-)
